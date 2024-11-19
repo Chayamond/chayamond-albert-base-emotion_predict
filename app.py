@@ -15,14 +15,13 @@ def predict_emotions(text):
     return predictions
 
 
-st.title("Phishing Email Detector")
-user_input = st.text_area("Enter the email content:")
+st.title("Text Emotional Detector")
+user_input = st.text_area("Enter the Text:")
 
-st.write(predict_phishing(user_input))
 if st.button("Predict"):
     if user_input:
         predictions = predict_emotions(user_input)
-        class_labels = ["anger", "fear", "joy", "love", "sadness", "surprise"]  # แก้ไขตามคลาสของโมเดล
+        class_labels = ["joy", "fear", "anger", "sadness"]  # แก้ไขตามคลาสของโมเดล
         predictions = predictions.detach().numpy()[0]  # แปลง Tensor เป็น numpy array
 
         st.write("### Predicted Emotions:")
