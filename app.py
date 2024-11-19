@@ -24,6 +24,11 @@ if st.button("Predict"):
         class_labels = ["joy", "fear", "anger", "sadness"]  # แก้ไขตามคลาสของโมเดล
         predictions = predictions.detach().numpy()[0]  # แปลง Tensor เป็น numpy array
 
-        st.write("### Predicted Emotions:")
-        for label, score in zip(class_labels, predictions):
-            st.write(f"**{label}:** {score:.2f}")
+        # ดึงค่าที่มีความมั่นใจสูงสุด
+        max_index = predictions.argmax()  # ตำแหน่งของค่าที่มากที่สุด
+        predicted_emotion = class_labels[max_index]
+        confidence = predictions[max_index]
+
+        # แสดงผลลัพธ์
+        st.write(f"### Predicted Emotion: **{predicted_emotion}**")
+        st.write(f"Confidence: {confidence:.2f}")
